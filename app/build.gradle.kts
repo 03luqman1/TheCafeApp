@@ -40,7 +40,7 @@ dependencies {
 
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation("com.google.code.gson:gson:2.10")
-    implementation ("com.google.firebase:firebase-messaging:24.0.0")
+
 
 
     implementation("androidx.core:core-ktx:1.12.0")

@@ -102,7 +102,7 @@ class BasketActivity : AppCompatActivity() {
         val orderDetailsRef = Firebase.database.reference.child("OrderDetails")
         orderDetailsRef.child(orderId).setValue(orderDetails)
 
-        showToast("Order Placed")
+
 
         // Navigate to the OrdersActivity or any other screen as needed
         val intent = Intent(this, PaymentActivity::class.java)

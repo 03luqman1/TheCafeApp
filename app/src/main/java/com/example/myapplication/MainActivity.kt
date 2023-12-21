@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity() {
             // Handle the action for "Sign Out"
             // Implement your logic here
             startActivity(Intent(this, StartActivity::class.java))
+            finish()
         }
     }
 }
