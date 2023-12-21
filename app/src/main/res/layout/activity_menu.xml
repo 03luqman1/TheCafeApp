@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#73B1AA"
+    android:padding="16dp">
+
+    <!-- Title: THE CAFE -->
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="THE CAFE"
+        android:textColor="#FFFFFF"
+        android:textSize="75sp"
+        android:textStyle="bold" />
+
+    <!-- Title: MENU -->
+    <TextView
+        android:id="@+id/textViewMenuTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:text="MENU"
+        android:textColor="#FFFFFF"
+        android:textSize="48sp"
+        android:textStyle="bold" />
+
+    <!-- List of Menu Items with Add to Basket Button -->
+    <ListView
+        android:id="@+id/listViewMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewMenuTitle"
+        android:layout_above="@id/buttonGoToBasket"
+    android:layout_marginTop="16dp"
+    android:background="@drawable/rounded_background"
+    android:divider="#CCCCCC"
+    android:dividerHeight="1dp"
+    android:textColor="#000000"
+    android:padding="8dp"
+    android:clipToPadding="false"
+    />
+
+    <!-- Button to Go to Basket -->
+    <Button
+        android:id="@+id/buttonGoToBasket"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="Go to Basket"
+        android:textSize="18sp"
+        android:textColor="#73B1AA"
+        android:background="@drawable/rounded_button"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="16dp"/>
+</RelativeLayout>

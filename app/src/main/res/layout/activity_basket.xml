@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#73B1AA"
+    android:padding="16dp">
+
+    <!-- Title: THE CAFE -->
+    <TextView
+        android:id="@+id/textViewCafeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="THE CAFE"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="75sp"
+        android:textStyle="bold" />
+
+    <!-- Title: BASKET -->
+    <TextView
+        android:id="@+id/textViewBasketTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewCafeTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:text="BASKET"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
+
+    <!-- List of Items in the Basket with Rounded Background -->
+    <ListView
+        android:id="@+id/listViewBasketItems"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewBasketTitle"
+        android:layout_above="@id/buttonCheckout"
+        android:layout_marginTop="16dp"
+        android:divider="#CCCCCC"
+        android:dividerHeight="1dp"
+        android:background="@drawable/rounded_background"
+    />
+
+    <!-- Button to Proceed with Checkout -->
+    <Button
+        android:id="@+id/buttonCheckout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="Proceed to Checkout"
+        android:textSize="18sp"
+        android:textColor="#73B1AA"
+        android:background="@drawable/rounded_button"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="16dp"/>
+</RelativeLayout>

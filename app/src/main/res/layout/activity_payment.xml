@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#73B1AA"
+    android:padding="16dp">
+
+    <!-- Title: THE CAFE -->
+    <TextView
+        android:id="@+id/textViewCafeTitlePayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="THE CAFE"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="75sp"
+        android:textStyle="bold" />
+
+    <!-- Message: Please make your payment -->
+    <TextView
+        android:id="@+id/textViewPaymentMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewCafeTitlePayment"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Please make your payment"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
+    <!-- TextView for displaying total cost -->
+    <TextView
+        android:id="@+id/textViewTotalCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewPaymentMessage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Total Cost: $50.00"
+    android:textColor="#FFFFFF"
+    android:textSize="24sp" />
+
+    <!-- Buttons for PayPal and Credit/Debit Card -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewTotalCost"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonPayPal"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:text="PayPal"
+            android:textSize="18sp"
+            android:textColor="#73B1AA"
+            android:background="@drawable/rounded_button" />
+
+        <Button
+            android:id="@+id/buttonCreditDebitCard"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:text="Credit/Debit Card"
+            android:textSize="15sp"
+            android:textColor="#73B1AA"
+            android:background="@drawable/rounded_button"
+            android:layout_marginStart="1dp"
+            android:singleLine="true"/>
+    </LinearLayout>
+</RelativeLayout>
