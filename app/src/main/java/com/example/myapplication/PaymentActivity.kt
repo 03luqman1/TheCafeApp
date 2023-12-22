@@ -4,10 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -23,6 +25,15 @@ class PaymentActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
 
+        // Retrieve total cost and order ID from the intent
+        val totalCost = intent.getDoubleExtra("totalCost", 0.0)
+        val orderId = intent.getStringExtra("orderId")
+
+        // Set the total cost in the TextView
+        val textViewTotalCost: TextView = findViewById(R.id.textViewTotalCost)
+        val formattedTotal = "$${DecimalFormat("#.##").format(totalCost)}"
+        textViewTotalCost.text = "Total Cost: $formattedTotal"
+
         val buttonPayPal: Button = findViewById(R.id.buttonPayPal)
         val buttonCreditDebitCard: Button = findViewById(R.id.buttonCreditDebitCard)
 
@@ -36,10 +47,16 @@ class PaymentActivity : AppCompatActivity() {
     }
 
     private fun handlePaymentButtonClick(paymentType: String) {
+        // Retrieve total cost and order ID from the intent
+        val totalCost = intent.getDoubleExtra("totalCost", 0.0)
+        val orderId = intent.getStringExtra("orderId")
+
         // Gather payment details
         val paymentId = generatePaymentId()
-        val orderId = intent.getStringExtra("orderId") // Make sure to pass orderId from the previous activity
-        val amount = 50.00 // Replace with the actual amount
+
+        // Use the actual total cost
+        val amount = totalCost
+
         val paymentDate = getCurrentDateTime()
 
         // Set up payment details

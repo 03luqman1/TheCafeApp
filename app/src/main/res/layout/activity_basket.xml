@@ -39,12 +39,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewBasketTitle"
-        android:layout_above="@id/buttonCheckout"
-        android:layout_marginTop="16dp"
-        android:divider="#CCCCCC"
-        android:dividerHeight="1dp"
-        android:background="@drawable/rounded_background"
+        android:layout_above="@id/textViewTotalCost"
+    android:layout_marginTop="16dp"
+    android:divider="#CCCCCC"
+    android:dividerHeight="1dp"
+    android:background="@drawable/rounded_background"
     />
+
+    <!-- TextView to Display Total Cost -->
+    <TextView
+        android:id="@+id/textViewTotalCost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/buttonCheckout"
+    android:layout_marginTop="8dp"
+    android:padding="8dp"
+    android:text="Total: $0.00"
+    android:textColor="#FFFFFF"
+    android:textSize="18sp"
+    android:textStyle="bold" />
 
     <!-- Button to Proceed with Checkout -->
     <Button

@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -18,6 +20,7 @@ class BasketActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var basketViewModel: BasketViewModel
+    private lateinit var textViewTotalCost: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,26 +59,55 @@ class BasketActivity : AppCompatActivity() {
             }
         }
 
+        // Initialize the TextView for total cost
+        textViewTotalCost = findViewById(R.id.textViewTotalCost)
+
+        // Update the total cost initially
+        updateTotalCost()
+
         // Disable the "Proceed to Checkout" button initially if the basket is empty
-        //buttonCheckout.isEnabled = basketViewModel.basketItems.isNotEmpty()
+        // buttonCheckout.isEnabled = basketViewModel.basketItems.isNotEmpty()
     }
 
     private fun removeItemFromBasket(position: Int) {
         basketViewModel.basketItems.removeAt(position)
         updateBasketAdapter()
+        updateTotalCost()
     }
 
     private fun updateBasketAdapter() {
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, basketViewModel.basketItems)
+        val adapter =
+            ArrayAdapter(this, android.R.layout.simple_list_item_1, basketViewModel.basketItems)
         val listViewBasketItems: ListView = findViewById(R.id.listViewBasketItems)
         listViewBasketItems.adapter = adapter
 
         // Disable the "Proceed to Checkout" button if the basket is empty
         val buttonCheckout: Button = findViewById(R.id.buttonCheckout)
         buttonCheckout.isEnabled = basketViewModel.basketItems.isNotEmpty()
-
     }
 
+    private fun updateTotalCost() {
+        val totalCost = calculateTotalCost()
+        val decimalFormat = DecimalFormat("#.##")
+        val formattedTotal = "$${decimalFormat.format(totalCost)}"
+        textViewTotalCost.text = "Total: $formattedTotal"
+    }
+
+    private fun calculateTotalCost(): Double {
+        var totalCost = 0.0
+        for (itemInfo in basketViewModel.basketItems) {
+            // Assuming the format is "item name - $price"
+            val priceString = itemInfo.split(" - ")[1]
+
+            // Remove the "$" symbol before parsing the price
+            val cleanPriceString = priceString.replace("$", "")
+
+            // Parse the cleaned price string to a double
+            val price = cleanPriceString.toDouble()
+            totalCost += price
+        }
+        return totalCost
+    }
 
 
     private fun placeOrder() {
@@ -102,12 +134,14 @@ class BasketActivity : AppCompatActivity() {
         val orderDetailsRef = Firebase.database.reference.child("OrderDetails")
         orderDetailsRef.child(orderId).setValue(orderDetails)
 
-
-
-        // Navigate to the OrdersActivity or any other screen as needed
+        // Pass total cost to PaymentActivity
+        val totalCost = calculateTotalCost()
         val intent = Intent(this, PaymentActivity::class.java)
+        intent.putExtra("totalCost", totalCost)
+        intent.putExtra("orderId", orderId)
         startActivity(intent)
     }
+
 
     private fun showToast(message: String) {
         // Helper function to show Toast messages

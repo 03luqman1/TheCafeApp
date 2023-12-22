@@ -67,17 +67,27 @@ class OrdersActivity : AppCompatActivity() {
         query.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val productsList: MutableList<String> = mutableListOf()
+                var totalCost = 0.0 // Variable to store the total cost
 
                 for (orderDetailSnapshot in snapshot.children) {
                     val products = orderDetailSnapshot.child("products").getValue(object : GenericTypeIndicator<List<String>>() {})
                     if (products != null) {
-                        productsList.addAll(products)
+                        for (productInfo in products) {
+                            // Assuming the format is "item name - $price"
+                            val itemName = productInfo.split(" - ")[0]
+                            productsList.add(itemName)
+
+                            // Prices are no longer added to totalCost
+                        }
                     }
                 }
 
-                // Display order details and status
+                // Calculate the total cost based on the number of items
+                totalCost = calculateTotalCost(snapshot)
+
+                // Display order details including item names, total cost, and order status
                 val orderDetails = if (productsList.isNotEmpty()) {
-                    "${productsList.joinToString(", ")} - $orderStatus"
+                    "${productsList.joinToString(", ")} - Total Cost: $${String.format("%.2f", totalCost)} - $orderStatus"
                 } else {
                     "No items - $orderStatus"
                 }
@@ -93,4 +103,24 @@ class OrdersActivity : AppCompatActivity() {
             }
         })
     }
+
+    private fun calculateTotalCost(snapshot: DataSnapshot): Double {
+        var totalCost = 0.0
+
+        for (orderDetailSnapshot in snapshot.children) {
+            val products = orderDetailSnapshot.child("products").getValue(object : GenericTypeIndicator<List<String>>() {})
+            if (products != null) {
+                for (productInfo in products) {
+                    // Assuming the format is "item name - $price"
+                    val priceString = productInfo.split(" - ")[1]
+                    val cleanPriceString = priceString.replace("$", "")
+                    totalCost += cleanPriceString.toDouble()
+                }
+            }
+        }
+
+        return totalCost
+    }
+
+
 }
