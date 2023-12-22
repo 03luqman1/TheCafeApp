@@ -138,4 +138,16 @@ class SignupActivity : AppCompatActivity() {
         // Helper function to show Toast messages
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
+    @Suppress("MissingSuperCall")
+    override fun onBackPressed() {
+
+        // Create an intent to start the MainActivity
+        val intent = Intent(this, StartActivity::class.java)
+
+        // Start the MainActivity
+        startActivity(intent)
+
+        // Finish the current activity
+        finish()
+    }
 }

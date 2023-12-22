@@ -25,4 +25,16 @@ class StartActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+    @Suppress("MissingSuperCall")
+    override fun onBackPressed() {
+
+        // Create an intent to start the MainActivity
+        val intent = Intent(this, StartActivity::class.java)
+
+        // Start the MainActivity
+        startActivity(intent)
+
+        // Finish the current activity
+        finish()
+    }
 }

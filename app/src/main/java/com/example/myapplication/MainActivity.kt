@@ -10,6 +10,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
         // Get references to the buttons
         val buttonGoToMenu: Button = findViewById(R.id.buttonGoToMenu)
         val buttonLeaveReview: Button = findViewById(R.id.buttonLeaveReview)
@@ -49,4 +51,21 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
     }
+
+    @Suppress("MissingSuperCall")
+    override fun onBackPressed() {
+
+        // Create an intent to start the MainActivity
+        val intent = Intent(this, MainActivity::class.java)
+
+        // Start the MainActivity
+        startActivity(intent)
+
+        // Finish the current activity
+        finish()
+    }
+
+
+
+
 }
