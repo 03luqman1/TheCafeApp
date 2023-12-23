@@ -44,17 +44,6 @@
     android:layout_below="@id/buttonGoToMenu"
     android:layout_marginTop="16dp"/>
 
-    <!-- Button to View Basket -->
-    <Button
-        android:id="@+id/buttonViewBasket"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="View Basket"
-        android:textSize="18sp"
-        android:textColor="#73B1AA"
-    android:background="@drawable/rounded_button"
-    android:layout_below="@id/buttonLeaveReview"
-    android:layout_marginTop="16dp"/>
 
     <!-- Button to View Orders -->
     <Button
@@ -65,7 +54,7 @@
         android:textSize="18sp"
         android:textColor="#73B1AA"
     android:background="@drawable/rounded_button"
-    android:layout_below="@id/buttonViewBasket"
+    android:layout_below="@id/buttonLeaveReview"
     android:layout_marginTop="16dp"/>
 
     <!-- Button to Sign Out -->

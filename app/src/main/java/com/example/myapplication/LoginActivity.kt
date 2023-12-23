@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class LoginActivity : AppCompatActivity() {
 
@@ -63,12 +64,17 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(username, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
                     val user = auth.currentUser
-                    // You can add logic here to navigate to the main activity or do further processing
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                    if (user != null) {
+                        // User signed in successfully, get the user ID
+                        val userId = user.uid
+
+                        // Check the user type (Admin or Customer) based on the user ID
+                        checkUserType(userId)
+                    } else {
+                        // Handle the case where the user is unexpectedly null
+                        showToast("Authentication failed. User is null.")
+                    }
                 } else {
                     // If sign in fails, display a message to the user.
                     // You can customize the error message based on the task.exception
@@ -77,6 +83,40 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
     }
+
+    private fun checkUserType(userId: String) {
+        val adminRef = FirebaseDatabase.getInstance().getReference("Admin").child(userId)
+        val customerRef = FirebaseDatabase.getInstance().getReference("Customers").child(userId)
+
+        adminRef.get().addOnCompleteListener { adminTask ->
+            if (adminTask.isSuccessful) {
+                if (adminTask.result != null && adminTask.result.exists()) {
+                    // User is an admin
+                    showToast("ADMIN SIGN IN, PLEASE ADD INTENT TO NEXT SCREEN")
+                } else {
+                    // Check if the user is a customer
+                    customerRef.get().addOnCompleteListener { customerTask ->
+                        if (customerTask.isSuccessful) {
+                            if (customerTask.result != null && customerTask.result.exists()) {
+                                // User is a customer
+                                val intent = Intent(this, MainActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            } else {
+                                showToast("User not found in database.")
+                            }
+                        } else {
+                            showToast("Error checking customer user type.")
+                        }
+                    }
+                }
+            } else {
+                showToast("Error checking admin user type.")
+            }
+        }
+    }
+
+
 
     private fun showToast(message: String) {
         // Helper function to show Toast messages

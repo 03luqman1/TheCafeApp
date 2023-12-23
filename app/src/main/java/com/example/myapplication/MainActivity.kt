@@ -15,7 +15,6 @@ class MainActivity : AppCompatActivity() {
         // Get references to the buttons
         val buttonGoToMenu: Button = findViewById(R.id.buttonGoToMenu)
         val buttonLeaveReview: Button = findViewById(R.id.buttonLeaveReview)
-        val buttonViewBasket: Button = findViewById(R.id.buttonViewBasket)
         val buttonViewOrders: Button = findViewById(R.id.buttonViewOrders)
         val buttonSignOut: Button = findViewById(R.id.buttonSignOut)
 
@@ -32,11 +31,6 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        buttonViewBasket.setOnClickListener {
-            // Handle the action for "View Basket"
-            // Implement your logic here
-            startActivity(Intent(this, BasketActivity::class.java))
-        }
 
         buttonViewOrders.setOnClickListener {
             // Handle the action for "View Orders"
