@@ -27,12 +27,12 @@ class LoginActivity : AppCompatActivity() {
         val textViewSignUp = findViewById<TextView>(R.id.textViewSignUp)
 
         buttonSignIn.setOnClickListener {
-            val username = editTextEmailSignIn.text.toString()
+            val email = editTextEmailSignIn.text.toString()
             val password = editTextPassword.text.toString()
 
-            if (validateInputs(username, password)) {
+            if (validateInputs(email, password)) {
                 // Inputs are valid, sign in with Firebase Authentication
-                signIn(username, password)
+                signIn(email, password)
             }
         }
 
@@ -43,11 +43,11 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun validateInputs(username: String, password: String): Boolean {
+    private fun validateInputs(email: String, password: String): Boolean {
         // Validate each input field and show error messages if needed
 
-        if (username.isEmpty()) {
-            showToast("Please enter your username.")
+        if (email.isEmpty()) {
+            showToast("Please enter your email.")
             return false
         }
 
@@ -60,8 +60,8 @@ class LoginActivity : AppCompatActivity() {
         return true
     }
 
-    private fun signIn(username: String, password: String) {
-        auth.signInWithEmailAndPassword(username, password)
+    private fun signIn(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val user = auth.currentUser

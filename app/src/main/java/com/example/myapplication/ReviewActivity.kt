@@ -55,7 +55,7 @@ class ReviewActivity : AppCompatActivity() {
 
         userId?.let {
             val database = Firebase.database
-            val reviewsRef = database.getReference("reviews")
+            val reviewsRef = database.getReference("Reviews")
 
             // Create a unique key for each review
             val reviewId = reviewsRef.push().key

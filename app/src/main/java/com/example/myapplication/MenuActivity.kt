@@ -25,7 +25,7 @@ class MenuActivity : AppCompatActivity() {
         // Initialize Firebase Auth and Database
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
-        menuRef = database.getReference("menu")
+        menuRef = database.getReference("Menu")
 
         // Get references to the views
         val listViewMenu: ListView = findViewById(R.id.listViewMenu)
@@ -42,11 +42,13 @@ class MenuActivity : AppCompatActivity() {
                 // Clear the existing menu items
                 menuItems.clear()
 
-                // Iterate through the menu items in the database and add them to the list
+                // Iterate through the menu items in the database and add available items to the list
                 for (itemSnapshot in snapshot.children) {
                     val menuItem = itemSnapshot.getValue(MenuItem::class.java)
                     menuItem?.let {
-                        menuItems.add(it)
+                        if (it.available) {
+                            menuItems.add(it)
+                        }
                     }
                 }
 
