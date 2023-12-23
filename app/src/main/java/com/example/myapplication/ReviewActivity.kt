@@ -27,20 +27,26 @@ class ReviewActivity : AppCompatActivity() {
         val editTextComments: EditText = findViewById(R.id.editTextComments)
         val buttonSubmitReview: Button = findViewById(R.id.buttonSubmitReview)
 
-        // Set up click listener for the "Submit Review" button
         buttonSubmitReview.setOnClickListener {
             // Get the selected rating and comments
             val rating: Float = ratingBar.rating
             val comments: String = editTextComments.text.toString()
 
-            // Display a toast with the review details (replace with your actual logic)
-            showToast("Rating: $rating\nComments: $comments")
+            // Check if a rating has been selected
+            if (rating > 0) {
+                // Display a toast with the review details (replace with your actual logic)
+                showToast("Rating: $rating\nComments: $comments")
 
-            // Add review details to the Realtime Database
-            addReviewToDatabase(rating, comments)
+                // Add review details to the Realtime Database
+                addReviewToDatabase(rating, comments)
 
-            startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, MainActivity::class.java))
+            } else {
+                // Display a toast indicating that a rating must be selected
+                showToast("Please select a star rating before submitting your review.")
+            }
         }
+
     }
 
     private fun addReviewToDatabase(rating: Float, comments: String) {
