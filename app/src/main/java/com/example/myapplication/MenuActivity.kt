@@ -14,6 +14,7 @@ class MenuActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: FirebaseDatabase
     private lateinit var menuRef: DatabaseReference
+    private var currentToast: Toast? = null
 
     // Keep track of selected items
     private val selectedItems: MutableList<String> = mutableListOf()
@@ -36,12 +37,11 @@ class MenuActivity : AppCompatActivity() {
         val adapter = MenuAdapter(this, menuItems)
         listViewMenu.adapter = adapter
 
-        // Set up value event listener to retrieve menu items from the database
+        // Set up event listener to retrieve menu items from the database
         menuRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 // Clear the existing menu items
                 menuItems.clear()
-
                 // Iterate through the menu items in the database and add available items to the list
                 for (itemSnapshot in snapshot.children) {
                     val menuItem = itemSnapshot.getValue(MenuItem::class.java)
@@ -55,7 +55,6 @@ class MenuActivity : AppCompatActivity() {
                 // Update the ListView
                 adapter.notifyDataSetChanged()
             }
-
             override fun onCancelled(error: DatabaseError) {
                 showToast("Failed to retrieve menu items.")
             }
@@ -65,14 +64,11 @@ class MenuActivity : AppCompatActivity() {
         listViewMenu.setOnItemClickListener { _, _, position, _ ->
             val selectedItem = menuItems[position]
             showToast("Added to basket: ${selectedItem.name}")
-
             // Add the selected item name and price to the list
-            val itemInfo = "${selectedItem.name} - $${selectedItem.price}"
+            val itemInfo = "${selectedItem.name} - £${selectedItem.price}"
             selectedItems.add(itemInfo)
         }
 
-
-        // Set up button click listener for "Go to Basket" button
         buttonGoToBasket.setOnClickListener {
             // Pass the selected items to the BasketActivity
             val intent = Intent(this, BasketActivity::class.java)
@@ -82,7 +78,8 @@ class MenuActivity : AppCompatActivity() {
     }
 
     private fun showToast(message: String) {
-        // Helper function to show Toast messages
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        currentToast?.cancel()
+        currentToast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+        currentToast?.show()
     }
 }

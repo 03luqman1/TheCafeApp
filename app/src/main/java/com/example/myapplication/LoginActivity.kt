@@ -13,12 +13,12 @@ import com.google.firebase.database.FirebaseDatabase
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private var currentToast: Toast? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
 
         val buttonSignIn = findViewById<Button>(R.id.buttonSignIn)
@@ -31,21 +31,17 @@ class LoginActivity : AppCompatActivity() {
             val password = editTextPassword.text.toString()
 
             if (validateInputs(email, password)) {
-                // Inputs are valid, sign in with Firebase Authentication
                 signIn(email, password)
             }
         }
 
         textViewSignUp.setOnClickListener {
-            // Navigate to SignupActivity when textViewSignUp is clicked
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
         }
     }
 
     private fun validateInputs(email: String, password: String): Boolean {
-        // Validate each input field and show error messages if needed
-
         if (email.isEmpty()) {
             showToast("Please enter your email.")
             return false
@@ -55,8 +51,6 @@ class LoginActivity : AppCompatActivity() {
             showToast("Please enter your password.")
             return false
         }
-
-        // All inputs are valid
         return true
     }
 
@@ -66,7 +60,6 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val user = auth.currentUser
                     if (user != null) {
-                        // User signed in successfully, get the user ID
                         val userId = user.uid
 
                         // Check the user type (Admin or Customer) based on the user ID
@@ -76,9 +69,6 @@ class LoginActivity : AppCompatActivity() {
                         showToast("Authentication failed. User is null.")
                     }
                 } else {
-                    // If sign in fails, display a message to the user.
-                    // You can customize the error message based on the task.exception
-                    // For simplicity, a generic error message is shown here.
                     showToast("Authentication failed. Check your credentials.")
                 }
             }
@@ -94,7 +84,7 @@ class LoginActivity : AppCompatActivity() {
                     // User is an admin
                     showToast("ADMIN SIGN IN, PLEASE ADD INTENT TO NEXT SCREEN")
                 } else {
-                    // Check if the user is a customer
+                    // user is a customer
                     customerRef.get().addOnCompleteListener { customerTask ->
                         if (customerTask.isSuccessful) {
                             if (customerTask.result != null && customerTask.result.exists()) {
@@ -119,20 +109,15 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun showToast(message: String) {
-        // Helper function to show Toast messages
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        currentToast?.cancel()
+        currentToast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+        currentToast?.show()
     }
 
     @Suppress("MissingSuperCall")
     override fun onBackPressed() {
-
-        // Create an intent to start the MainActivity
         val intent = Intent(this, StartActivity::class.java)
-
-        // Start the MainActivity
         startActivity(intent)
-
-        // Finish the current activity
         finish()
     }
 }

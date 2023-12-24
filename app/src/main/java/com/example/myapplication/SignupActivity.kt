@@ -13,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase
 class SignupActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private var currentToast: Toast? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +59,6 @@ class SignupActivity : AppCompatActivity() {
         password: String
     ): Boolean {
         // Validate each input field and show error messages if needed
-
         if (fullName.isEmpty()) {
             showToast("Please enter your full name.")
             return false
@@ -95,18 +95,14 @@ class SignupActivity : AppCompatActivity() {
                     // Registration success, update UI with the signed-in user's information
                     val user = auth.currentUser
                     showToast("Registration successful.")
-
                     // Add user details to the Realtime Database
                     addUserDetailsToDatabase(user?.uid)
 
-                    // You can add logic here to navigate to the main activity or do further processing
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
                     // If registration fails, display a message to the user.
-                    // You can customize the error message based on the task.exception
-                    // For simplicity, a generic error message is shown here.
                     showToast("Registration failed. ${task.exception?.message}")
                 }
             }
@@ -116,7 +112,6 @@ class SignupActivity : AppCompatActivity() {
         userId?.let {
             val database = FirebaseDatabase.getInstance()
             val usersRef = database.getReference("Customers")
-
             val editTextFullName = findViewById<EditText>(R.id.editTextFullName)
             val editTextUsername = findViewById<EditText>(R.id.editTextEmailSignIn)
             val editTextEmail = findViewById<EditText>(R.id.editTextEmail)
@@ -135,19 +130,14 @@ class SignupActivity : AppCompatActivity() {
     }
 
     private fun showToast(message: String) {
-        // Helper function to show Toast messages
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        currentToast?.cancel()
+        currentToast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+        currentToast?.show()
     }
     @Suppress("MissingSuperCall")
     override fun onBackPressed() {
-
-        // Create an intent to start the MainActivity
         val intent = Intent(this, StartActivity::class.java)
-
-        // Start the MainActivity
         startActivity(intent)
-
-        // Finish the current activity
         finish()
     }
 }

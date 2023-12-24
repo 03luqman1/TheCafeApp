@@ -9,7 +9,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
 
-// ...
 class MenuAdapter(context: Context, items: List<MenuItem>) :
     ArrayAdapter<MenuItem>(context, 0, items) {
 
@@ -24,13 +23,10 @@ class MenuAdapter(context: Context, items: List<MenuItem>) :
         val textViewItemDescription: TextView = itemView.findViewById(R.id.textViewItemDescription)
         val textViewItemPrice: TextView = itemView.findViewById(R.id.textViewItemPrice)
 
-        // Load image using Picasso
         Picasso.get().load(currentItem.image).into(imageViewItem)
-
-        // Set text values
         textViewItemName.text = currentItem.name
         textViewItemDescription.text = currentItem.description
-        textViewItemPrice.text = "$${currentItem.price}"
+        textViewItemPrice.text = "£${currentItem.price}"
 
         return itemView
     }

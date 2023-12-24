@@ -14,6 +14,7 @@ import com.google.firebase.ktx.Firebase
 class ReviewActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private var currentToast: Toast? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,12 +35,9 @@ class ReviewActivity : AppCompatActivity() {
 
             // Check if a rating has been selected
             if (rating > 0) {
-                // Display a toast with the review details (replace with your actual logic)
-                showToast("Rating: $rating\nComments: $comments")
-
                 // Add review details to the Realtime Database
                 addReviewToDatabase(rating, comments)
-
+                showToast("Rating Submitted - Thanks for the review!")
                 startActivity(Intent(this, MainActivity::class.java))
             } else {
                 // Display a toast indicating that a rating must be selected
@@ -71,7 +69,8 @@ class ReviewActivity : AppCompatActivity() {
     }
 
     private fun showToast(message: String) {
-        // Helper function to show Toast messages
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        currentToast?.cancel()
+        currentToast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+        currentToast?.show()
     }
 }

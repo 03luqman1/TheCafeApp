@@ -20,21 +20,15 @@ class StartActivity : AppCompatActivity() {
 
         val buttonGoToSignup = findViewById<Button>(R.id.buttonSignUp)
         buttonGoToSignup.setOnClickListener {
-            // Handle the button click to go to the Login activity
+            // Handle the button click to go to the Signup activity
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
         }
     }
     @Suppress("MissingSuperCall")
     override fun onBackPressed() {
-
-        // Create an intent to start the MainActivity
         val intent = Intent(this, StartActivity::class.java)
-
-        // Start the MainActivity
         startActivity(intent)
-
-        // Finish the current activity
         finish()
     }
 }

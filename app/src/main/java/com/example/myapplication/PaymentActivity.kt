@@ -17,6 +17,7 @@ class PaymentActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var database: FirebaseDatabase
+    private var currentToast: Toast? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,29 +67,24 @@ class PaymentActivity : AppCompatActivity() {
         val paymentsRef = database.reference.child("Payments")
         paymentsRef.child(paymentId).setValue(paymentDetails)
 
-        // Handle further actions, e.g., navigate to a confirmation screen
-        // ...
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
 
-        // Display a toast or message indicating successful payment
-        showToast("Payment successful")
+        showToast("Payment successful - Order placed")
     }
 
     private fun showToast(message: String) {
-        // Helper function to show Toast messages
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-        // You can implement this method based on your preferred way of displaying messages
+        currentToast?.cancel()
+        currentToast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+        currentToast?.show()
     }
 
     private fun generatePaymentId(): String {
-        // Generate a unique payment ID (you can customize this based on your needs)
         return UUID.randomUUID().toString()
     }
 
     private fun getCurrentDateTime(): String {
-        // Get the current date and time in a specified format
         val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         return sdf.format(Date())
     }
