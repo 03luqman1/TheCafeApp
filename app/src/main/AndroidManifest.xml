@@ -90,6 +90,14 @@
             android:label="Admin Panel"
             android:theme="@style/Theme.MyApplication">
         </activity>
+
+        <activity
+            android:name=".AddAdminActivity"
+            android:label="Add Admin"
+            android:theme="@style/Theme.MyApplication">
+        </activity>
+
+
     </application>
 
 </manifest>

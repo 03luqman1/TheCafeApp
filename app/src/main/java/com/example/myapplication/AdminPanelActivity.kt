@@ -36,4 +36,11 @@ class AdminPanelActivity : AppCompatActivity() {
         startActivity(intent)
 
     }
+    fun onAddAdminClicked(view: View) {
+        val intent = Intent(this, AddAdminActivity::class.java)
+        startActivity(intent)
+
+    }
+
+
 }
