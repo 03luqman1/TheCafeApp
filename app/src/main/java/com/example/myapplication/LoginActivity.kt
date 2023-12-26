@@ -81,8 +81,10 @@ class LoginActivity : AppCompatActivity() {
         adminRef.get().addOnCompleteListener { adminTask ->
             if (adminTask.isSuccessful) {
                 if (adminTask.result != null && adminTask.result.exists()) {
-                    // User is an admin
-                    showToast("ADMIN SIGN IN, PLEASE ADD INTENT TO NEXT SCREEN")
+                    val intent = Intent(this, AdminPanelActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                    showToast("Admin sign in successfull")
                 } else {
                     // user is a customer
                     customerRef.get().addOnCompleteListener { customerTask ->
