@@ -2,7 +2,6 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -28,7 +27,7 @@ class PaymentActivity : AppCompatActivity() {
 
         // Retrieve total cost and order ID from the intent
         val totalCost = intent.getDoubleExtra("totalCost", 0.0)
-        val orderId = intent.getStringExtra("orderId")
+        //val orderId = intent.getStringExtra("orderId")
 
         // Set the total cost in the TextView
         val textViewTotalCost: TextView = findViewById(R.id.textViewTotalCost)
