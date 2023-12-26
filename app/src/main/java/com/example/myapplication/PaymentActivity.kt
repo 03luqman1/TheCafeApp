@@ -32,7 +32,7 @@ class PaymentActivity : AppCompatActivity() {
 
         // Set the total cost in the TextView
         val textViewTotalCost: TextView = findViewById(R.id.textViewTotalCost)
-        val formattedTotal = "$${DecimalFormat("#.##").format(totalCost)}"
+        val formattedTotal = "£${DecimalFormat("#.##").format(totalCost)}"
         textViewTotalCost.text = "Total Cost: $formattedTotal"
 
         val buttonPayPal: Button = findViewById(R.id.buttonPayPal)
