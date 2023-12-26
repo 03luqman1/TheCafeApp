@@ -62,6 +62,34 @@
                     </intent-filter>
                 </activity>
                 -->
+        <activity
+            android:name=".ViewOrdersActivity"
+            android:label="View Orders"
+            android:theme="@style/Theme.MyApplication">
+        </activity>
+
+        <activity
+            android:name=".ViewRatingsActivity"
+            android:label="View Ratings"
+            android:theme="@style/Theme.MyApplication">
+        </activity>
+
+        <activity
+            android:name=".ManageItemsActivity"
+            android:label="Manage Items"
+            android:theme="@style/Theme.MyApplication">
+        </activity>
+
+        <activity
+            android:name=".SendNotificationsActivity"
+            android:label="Send Notifications"
+            android:theme="@style/Theme.MyApplication">
+        </activity>
+        <activity
+            android:name=".AdminPanelActivity"
+            android:label="Admin Panel"
+            android:theme="@style/Theme.MyApplication">
+        </activity>
     </application>
 
 </manifest>
