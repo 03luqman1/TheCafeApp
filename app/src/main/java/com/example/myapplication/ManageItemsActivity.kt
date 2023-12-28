@@ -1,7 +1,7 @@
 package com.example.myapplication
-
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 
 class ManageItemsActivity : AppCompatActivity() {
@@ -11,13 +11,13 @@ class ManageItemsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_manage_items)
     }
 
-    fun onAddButtonClicked() {
-        // Add your logic for the "Add Items" button here
-        startActivity(Intent(this, AddItemActivity::class.java))
+    fun onAddButtonClicked(view: View) {
+        val intent = Intent(this, AddItemActivity::class.java)
+        startActivity(intent)
     }
 
-    fun onDeleteButtonClicked() {
-        // Add your logic for the "Delete Items" button here
-        startActivity(Intent(this, DeleteItemActivity::class.java))
+    fun onDeleteButtonClicked(view: View) {
+        val intent = Intent(this, DeleteItemActivity::class.java)
+        startActivity(intent)
     }
 }

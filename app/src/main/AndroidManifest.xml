@@ -66,13 +66,13 @@
         <activity
             android:name=".AddItemActivity"
             android:label="Add Item Activity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/Theme.MyApplication">
         </activity>
 
         <activity
             android:name=".DeleteItemActivity"
             android:label="Delete Item Activity"
-            android:theme="@style/AppTheme"> <!-- Add any additional configuration if needed -->
+            android:theme="@style/Theme.MyApplication"> <!-- Add any additional configuration if needed -->
         </activity>
         <activity
             android:name=".ViewOrdersActivity"
