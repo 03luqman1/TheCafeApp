@@ -3,6 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Your UI elements for viewing orders go here -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewRatings"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:clipToPadding="false"
+        android:clipChildren="false"/>
 
 </RelativeLayout>
