@@ -4,6 +4,7 @@ import android.widget.Button
 
 
 import android.os.Bundle
+import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -62,6 +63,10 @@ class AddAdminActivity : AppCompatActivity() {
 
             // Display a success message or perform any other actions needed
             Toast.makeText(this, "Admin added successfully", Toast.LENGTH_SHORT).show()
+        }
+        fun onBackPressed(view: View) {
+            // Handle the back button click
+            onBackPressed()
         }
     }
 }

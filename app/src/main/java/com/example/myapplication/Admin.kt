@@ -1,17 +1,27 @@
 package com.example.myapplication
 
+
 class Admin {
-    private var email: String? = null
-    private var fullName: String? = null
-    private var phoneNumber: String? = null
-    private var userName: String? = null
+    @JvmField
+    var email: String? = null
 
+    @JvmField
+    var fullName: String? = null
 
-    constructor() {}
+    @JvmField
+    var phoneNumber: String? = null
+
+    @JvmField
+    var userName: String? = null
+
+    constructor() {
+        // Default constructor is necessary for Firebase
+    }
+
     constructor(email: String?, fullName: String?, phoneNumber: String?, userName: String?) {
         this.email = email
         this.fullName = fullName
         this.phoneNumber = phoneNumber
         this.userName = userName
-    } // Add getters and setters as needed
+    }
 }
