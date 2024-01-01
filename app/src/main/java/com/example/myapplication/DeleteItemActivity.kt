@@ -1,5 +1,7 @@
 package com.example.myapplication
+
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -54,7 +56,12 @@ class DeleteItemActivity : AppCompatActivity() {
         deleteButton.setOnClickListener {
             // The deletion logic is now handled within the adapter callback
             // You may choose to perform additional actions here if needed
+
+            // Show a toast message
+            Toast.makeText(this@DeleteItemActivity, "Successfully selected items", Toast.LENGTH_SHORT).show()
+
+            // Navigate back to the previous page
+            onBackPressed()
         }
     }
 }
-

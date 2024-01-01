@@ -23,7 +23,7 @@ class AdminPanelActivity : AppCompatActivity() {
     }
 
     fun onManageItemsClicked(view: View) {
-        val intent = Intent(this, ManageItemsActivity::class.java)
+        val intent = Intent(this, StartActivity::class.java)
         startActivity(intent)
     }
 
