@@ -23,7 +23,7 @@ class AdminPanelActivity : AppCompatActivity() {
     }
 
     fun onManageItemsClicked(view: View) {
-        val intent = Intent(this, StartActivity::class.java)
+        val intent = Intent(this, ManageItemsActivity::class.java)
         startActivity(intent)
     }
 
@@ -32,9 +32,9 @@ class AdminPanelActivity : AppCompatActivity() {
         startActivity(intent)
     }
     fun onSignOutClicked(view: View) {
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, StartActivity::class.java)
         startActivity(intent)
-
+        finish()
     }
     fun onAddAdminClicked(view: View) {
         val intent = Intent(this, AddAdminActivity::class.java)

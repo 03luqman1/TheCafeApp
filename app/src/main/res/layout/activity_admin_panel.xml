@@ -7,27 +7,32 @@
     android:layout_height="match_parent"
     android:background="#73B1AA">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Welcome To Admin Panel"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnViewOrders"
+        app:layout_constraintVertical_chainStyle="packed"/>
+
     <Button
         android:id="@+id/btnViewOrders"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="208dp"
         android:onClick="onViewOrdersClicked"
         android:text="View Orders"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnViewRatings"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:onClick="onViewRatingsClicked"
-        android:text="View Ratings"
-        app:layout_constraintEnd_toEndOf="@+id/btnViewOrders"
-        app:layout_constraintStart_toStartOf="@+id/btnViewOrders"
-        app:layout_constraintTop_toBottomOf="@id/btnViewOrders" />
 
     <Button
         android:id="@+id/btnManageItems"
@@ -37,6 +42,7 @@
         android:onClick="onManageItemsClicked"
         android:text="Manage Items"
         app:layout_constraintEnd_toEndOf="@+id/btnViewRatings"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/btnViewRatings"
         app:layout_constraintTop_toBottomOf="@id/btnViewRatings" />
 
@@ -48,27 +54,15 @@
         android:onClick="onSendNotificationsClicked"
         android:text="Send Notifications"
         app:layout_constraintEnd_toEndOf="@+id/btnManageItems"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/btnManageItems"
         app:layout_constraintTop_toBottomOf="@id/btnManageItems" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Welcome To Admin Panel"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btnViewOrders"
-        app:layout_constraintVertical_chainStyle="packed"/>
     <Button
         android:id="@+id/btnSignOut"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:onClick="onSignOutClicked"
         android:text="Sign Out"
         app:layout_constraintEnd_toEndOf="@+id/btnManageItems"
@@ -84,7 +78,20 @@
         android:onClick="onAddAdminClicked"
         android:text="Add Admin"
         app:layout_constraintEnd_toEndOf="@+id/btnSignOut"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/btnSignOut"
         app:layout_constraintTop_toBottomOf="@id/btnSignOut" />
+
+    <Button
+        android:id="@+id/btnViewRatings"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="onViewRatingsClicked"
+        android:text="View Ratings"
+        app:layout_constraintEnd_toEndOf="@+id/btnViewOrders"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btnViewOrders"
+        app:layout_constraintTop_toBottomOf="@id/btnViewOrders" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
