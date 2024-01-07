@@ -59,13 +59,13 @@ class SignupActivity : AppCompatActivity() {
         password: String
     ): Boolean {
         // Validate each input field and show error messages if needed
-        if (fullName.isEmpty()) {
-            showToast("Please enter your full name.")
+        if (fullName.isEmpty() || fullName.length < 1 || fullName.length > 50) {
+            showToast("Please enter a valid full name (1-50 characters).")
             return false
         }
 
-        if (userName.isEmpty()) {
-            showToast("Please enter a username.")
+        if (userName.isEmpty() || userName.length < 1 || userName.length > 50) {
+            showToast("Please enter a valid username (1-50 characters).")
             return false
         }
 
@@ -74,13 +74,13 @@ class SignupActivity : AppCompatActivity() {
             return false
         }
 
-        if (phoneNumber.isEmpty() || !android.util.Patterns.PHONE.matcher(phoneNumber).matches()) {
+        if (phoneNumber.isEmpty() || !android.util.Patterns.PHONE.matcher(phoneNumber).matches() || phoneNumber.length > 15) {
             showToast("Please enter a valid phone number.")
             return false
         }
 
-        if (password.isEmpty() || password.length < 6) {
-            showToast("Please enter a password with at least 6 characters.")
+        if (password.length < 8 || password.length > 20 || password.contains(" ")) {
+            showToast("Please enter a password between 8 and 20 characters without spaces.")
             return false
         }
 

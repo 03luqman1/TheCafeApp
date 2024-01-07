@@ -42,13 +42,13 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun validateInputs(email: String, password: String): Boolean {
-        if (email.isEmpty()) {
-            showToast("Please enter your email.")
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            showToast("Please enter a valid email address.")
             return false
         }
 
-        if (password.isEmpty()) {
-            showToast("Please enter your password.")
+        if (password.length < 8 || password.length > 20 || password.contains(" ")) {
+            showToast("Please enter a valid password")
             return false
         }
         return true

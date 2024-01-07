@@ -33,15 +33,19 @@ class ReviewActivity : AppCompatActivity() {
             val rating: Float = ratingBar.rating
             val comments: String = editTextComments.text.toString()
 
-            // Check if a rating has been selected
-            if (rating > 0) {
-                // Add review details to the Realtime Database
-                addReviewToDatabase(rating, comments)
-                showToast("Rating Submitted - Thanks for the review!")
-                startActivity(Intent(this, MainActivity::class.java))
+            if (comments.length > 500) {
+                showToast("Comments cannot exceed 500 characters.")
             } else {
-                // Display a toast indicating that a rating must be selected
-                showToast("Please select a star rating before submitting your review.")
+                // Check if a rating has been selected
+                if (rating > 0) {
+                    // Add review details to the Realtime Database
+                    addReviewToDatabase(rating, comments)
+                    showToast("Rating Submitted - Thanks for the review!")
+                    startActivity(Intent(this, MainActivity::class.java))
+                } else {
+                    // Display a toast indicating that a rating must be selected
+                    showToast("Please select a star rating before submitting your review.")
+                }
             }
         }
 
