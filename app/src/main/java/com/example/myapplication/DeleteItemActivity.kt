@@ -58,7 +58,7 @@ class DeleteItemActivity : AppCompatActivity() {
             // You may choose to perform additional actions here if needed
 
             // Show a toast message
-            Toast.makeText(this@DeleteItemActivity, "Successfully selected items", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@DeleteItemActivity, "Successfully Deleted selected items", Toast.LENGTH_SHORT).show()
 
             // Navigate back to the previous page
             onBackPressed()

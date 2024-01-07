@@ -1,7 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#73B1AA">
 
     <EditText
         android:id="@+id/editTextEmail"
@@ -53,13 +54,6 @@
         android:layout_below="@id/editTextPassword"
         android:layout_marginTop="16dp"
         android:text="Add Admin" />
-    <Button
-        android:id="@+id/buttonBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back"
-        android:layout_marginTop="16dp"
-        android:layout_below="@id/buttonAddAdmin"
-        android:onClick="onBackButtonClick" />
+
 
 </RelativeLayout>

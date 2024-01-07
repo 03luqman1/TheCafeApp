@@ -42,5 +42,9 @@ class AdminPanelActivity : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        // Do nothing (disable the back button)
+    }
+
 
 }

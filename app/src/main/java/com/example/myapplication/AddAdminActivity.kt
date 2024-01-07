@@ -64,9 +64,6 @@ class AddAdminActivity : AppCompatActivity() {
             // Display a success message or perform any other actions needed
             Toast.makeText(this, "Admin added successfully", Toast.LENGTH_SHORT).show()
         }
-        fun onBackPressed(view: View) {
-            // Handle the back button click
-            onBackPressed()
-        }
+
     }
 }
