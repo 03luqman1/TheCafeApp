@@ -33,15 +33,18 @@ class ViewOrdersActivity : AppCompatActivity() {
     }
 
     private fun loadOrders() {
-        databaseReference.addValueEventListener(object : ValueEventListener {
+        databaseReference.orderByChild("orderDate").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val ordersList = mutableListOf<Order>()
+
                 for (orderSnapshot in dataSnapshot.children) {
                     val order = orderSnapshot.getValue(Order::class.java)
                     order?.let {
                         ordersList.add(it)
                     }
                 }
+                // Sort orders by orderDate in descending order
+                ordersList.sortByDescending { it.orderDateTime }
                 adapter.setOrders(ordersList)
             }
 
@@ -50,6 +53,11 @@ class ViewOrdersActivity : AppCompatActivity() {
             }
         })
     }
+
+
+
+
+
 
     private fun updateOrderStatus(orderId: String, newStatus: String) {
         // Update the order status in the Firebase database
